@@ -1,0 +1,17 @@
+<feeds>
+	<feed>
+		<name>Postimees</name>
+		<url>http://rus.postimees.ee/rss</url>
+		<filter>зарплата</filter>
+	</feed>
+	<feed>
+		<name>Delfi</name>
+		<url>http://rus.delfi.ee/rss</url>
+		<filter>зарплата</filter>
+	</feed>
+	<feed>
+		<name>HabraHabr</name>
+		<url>http://www.habrahabr.ru/rss</url>
+		<filter>зарплата</filter>
+	</feed>
+</feeds>
