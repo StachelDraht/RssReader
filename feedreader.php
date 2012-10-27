@@ -11,39 +11,27 @@ class Reader {
 		
 		$this->feeds = simplexml_import_dom($dom);
 	}
-	
-	/*public function read()
-	{
-		$rssfeed = new DOMDocument();
-		$rssfeed->load($this->feeds->feed[0]->url);
-		$channel = $rssfeed->getElementsByTagName('channel')->item(0);
-		$output['title'] = $channel->getElementsByTagName('title')->item(0)->childNodes->item(0)->nodeValue;
-		$output['items'] = $rssfeed->getElementsByTagName('item');
-		return $output;
-	}*/
-	public function read()
-	{
-		/*for($i=0; $i<count($this->feeds); $i++)
-		{
-			$rss[$i] = simplexml_load_file($this->feeds->feed[$i]->url);
-		}
-		return $rss;*/
+
+	public function read() {
 		# title, link, description, pubdate -> timestamp, channel
 		$news = array();
 		$n = 0;
 		for($i=0; $i<count($this->feeds); $i++)
 		{
-			$rss = simplexml_load_file($this->feeds->feed[$i]->url);
-			foreach($rss->channel->item as $item)
+			if($this->feeds->feed[$i]->view != 0)
 			{
-				$news[$n]['channel'] = $this->feeds->feed[$i]->name;
-				$news[$n]['title'] = $item->title;
-				$news[$n]['descr'] = $item->description;
-				$news[$n]['link'] = $item->link;
-				$news[$n]['pub'] = strtotime($item->pubDate);//$item->pubDate;
-				//$news[$n]['date'] = strftime("%Y-%m-%d %H:%M:%S", strtotime($item->pudDate));
-				$n++;
+				$rss = simplexml_load_file($this->feeds->feed[$i]->url);
+				foreach($rss->channel->item as $item)
+				{
+					$news[$n]['channel'] = $this->feeds->feed[$i]->name;
+					$news[$n]['title'] = $item->title;
+					$news[$n]['descr'] = $item->description;
+					$news[$n]['link'] = $item->link;
+					$news[$n]['pub'] = strtotime($item->pubDate);
+					$n++;
+				}
 			}
+			
 			//$n++;
 		}
 		
@@ -55,7 +43,32 @@ class Reader {
 		} 
 		uasort($news, 'usersort');
 		return $news;
-		
+	}
+	
+	public function editxml($data)
+	{
+		$rss = $this->feeds->feed[intval($data['feednum'])];
+		$rss->name = $data['name'];
+		$rss->url = $data['url'];
+		$rss->filter = $data['filter'];
+		$rss->view = $data['view'];
+		$this->feeds->asXML('feedlist.xml');
+	}
+	
+	public function removerss($data)
+	{
+		unset($this->feeds->feed[intval($data['feednum'])]);
+		$this->feeds->asXML('feedlist.xml');
+	}
+	
+	public function addchannel($data)
+	{
+		$newfeed = $this->feeds->addChild("feed");
+		$newfeed->addChild('name', $data['channelname']);
+		$newfeed->addChild('url', $data['channelurl']);
+		$newfeed->addChild('filter', $data['channelfilter']);
+		$newfeed->addChild('view', $data['channelview']);
+		$this->feeds->asXML('feedlist.xml');
 	}
 	
 }

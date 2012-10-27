@@ -2,7 +2,15 @@
 require 'feedreader.php';
 
 $reader = new Reader;
-$data = $reader->read();
+
+if(isset($_POST['addrss'])) {
+	$reader->addchannel($_POST);
+} elseif (isset($_POST['editrss'])) {
+	$reader->editxml($_POST);
+} elseif (isset($_POST['removerss'])) {
+	$reader->removerss($_POST);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +58,7 @@ $data = $reader->read();
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li><a href="/">Home</a></li>
-              <li><a href="/backend.php">Back-End</a></li>
+              <li><a href="backend.php">Back-End</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -58,13 +66,53 @@ $data = $reader->read();
     </div>
 
     <div class="container">
-    	<?php foreach($data as $item): ?>
+    	<?php 
+    		$i=0;
+    		foreach($reader->feeds as $feed):?>
     		<div class="hero-unit">
-    			<h4><?=$item['channel']?>: <a href="<?=$item['link']?>"><?=$item['title']?></a></h4>
-    			<p><?=$item['descr'];?></p>
-    			<p><?=date("d-m-Y H:i:s",$item['pub']);?></p>
+    			<div class="row-fluid">
+    				<form method="post" action="/backend.php">
+    				<div class="span4">
+    					<input type="hidden" value="<?=$i?>" name="feednum" />
+    					<label>Channel name:</label>
+		    			<input type="text" name="name" value="<?=$feed->name?>" />
+		    			<label>Channel url:</label>
+		    			<input type="text" name="url" value="<?=$feed->url?>" />
+    				</div>
+    				<div class="span4">
+    					<label>View:</label>
+    					<input type="text" name="view" value="<?=$feed->view?>" />
+    					<label>Filter:</label>
+    					<textarea name="filter" ><?=$feed->filter?></textarea>
+    				</div>
+    				<div class="span4">
+    					<input type="submit" class="btn btn-success" name="editrss" value="Save" /> <input type="submit" name="removerss" class="btn btn-danger" value="Remove" />
+    				</div>
+    				</form>
+    			</div>
     		</div>
-    	<?php endforeach; ?>
+    	<?php $i++; endforeach; ?>
+    	<div class="hero-unit">
+    		<h3>New RSS channel</h3>
+    		<form method="post" action="/backend.php">
+    			<div class="row-fluid">
+    				<div class="span4">
+    					<label>Channel name:</label>
+		    			<input type="text" name="channelname" value="" />
+		    			<label>Channel url:</label>
+		    			<input type="text" name="channelurl" value="" />
+    				</div>
+    				<div class="span4">
+    					<label>View:</label>
+    					<input type="text" name="channelview" value="" />
+    					<label>Filter:</label>
+    					<textarea name="channelfilter"></textarea>
+    				</div>
+	    			
+    			</div>
+    			<input type="submit" class="btn" name="addrss" value="Add" />
+    			</form>
+    		</div>
     </div> <!-- /container -->
 
     <!-- Le javascript
