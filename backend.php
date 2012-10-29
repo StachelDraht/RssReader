@@ -21,7 +21,7 @@ if(isset($_POST['addrss'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
+	<link rel="icon" type="image/ico" href="/favicon.ico" />
     <!-- Le styles -->
     <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
     <style>
@@ -35,13 +35,6 @@ if(isset($_POST['addrss'])) {
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
   </head>
 
   <body>
@@ -86,6 +79,10 @@ if(isset($_POST['addrss'])) {
     					<textarea name="filter" ><?=$feed->filter?></textarea>
     				</div>
     				<div class="span4">
+	    				<label>Refresh time (s):</label>
+	    				<input type="text" name="refresh" value="<?=$feed->refresh?>" />
+	    			</div>
+    				<div class="span4">
     					<input type="submit" class="btn btn-success" name="editrss" value="Save" /> <input type="submit" name="removerss" class="btn btn-danger" value="Remove" />
     				</div>
     				</form>
@@ -108,7 +105,10 @@ if(isset($_POST['addrss'])) {
     					<label>Filter:</label>
     					<textarea name="channelfilter"></textarea>
     				</div>
-	    			
+	    			<div class="span4">
+	    				<label>Refresh time (s):</label>
+	    				<input type="text" name="refresh" value="60" />
+	    			</div>
     			</div>
     			<input type="submit" class="btn" name="addrss" value="Add" />
     			</form>

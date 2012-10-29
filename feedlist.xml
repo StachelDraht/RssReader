@@ -1,18 +1,20 @@
 <?xml version="1.0"?>
 <feeds>
 	<feed>
-		<name>Postimees rus</name>
+		<name>Postimees</name>
 		<url>http://rus.postimees.ee/rss</url>
 		<filter>&#x437;&#x430;&#x440;&#x43F;&#x43B;&#x430;&#x442;&#x430;</filter>
 		<view>1</view>
 		<refresh>60</refresh>
+		<lastup>1351499943</lastup>
 	</feed>
 	<feed>
-		<name>Delfi rus</name>
+		<name>Delfi</name>
 		<url>http://rus.delfi.ee/rss</url>
 		<filter>&#x437;&#x430;&#x440;&#x43F;&#x43B;&#x430;&#x442;&#x430;</filter>
 		<view>1</view>
-		<refresh>80</refresh>
+		<refresh>65</refresh>
+		<lastup>1351499943</lastup>
 	</feed>
 	<feed>
 		<name>HabraHabr</name>
@@ -20,6 +22,7 @@
 		<filter>&#x437;&#x430;&#x440;&#x43F;&#x43B;&#x430;&#x442;&#x430;</filter>
 		<view>1</view>
 		<refresh>300</refresh>
+		<lastup>1351499943</lastup>
 	</feed>
 	
 </feeds>
