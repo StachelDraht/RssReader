@@ -11,14 +11,6 @@ $reader = new Reader();
 		$.getJSON('/feedreader.php', {feed: name}, function(data) {
 		  var items = [];
 		
-		  /*$.each(data, function(key, val) {
-		    items.push('<li id="' + key + '">' + val + '</li>');
-		  });*/
-		
-		  /*$('<ul/>', {
-		    'class': 'my-new-list',
-		    html: items.join('')
-		  }).appendTo('body');*/
 		 $.each(data, function(key, val) {
 		 	$('#news').prepend('<div class="hero-unit"><h4>'+val.channel[0]+': <a href="'+val.link[0]+'">'+val.title+'</a></h4><p>'+val.descr+'</p><p>'+val.pub+'</p></div>');
 		 });
