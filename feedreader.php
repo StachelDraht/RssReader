@@ -61,12 +61,13 @@ class Reader {
 				$news[$n]['title'] = ereg_replace('<([\/]?)code>', '<\\1jstype>', $item->title);
 				$news[$n]['descr'] = ereg_replace('<([\/]?)code>', '<\\1jstype>', $item->description);
 				$news[$n]['link'] = $item->link;
-				$news[$n]['pub'] = date("d-m-Y H:i:s",strtotime($item->pubDate));
+				$news[$n]['pub'] = strtotime($item->pubDate);
 				$n++;
+				$this->feeds->feed[intval($feednum)]->lastup = $news[0]['pub'];
+				$this->feeds->asXML('feedlist.xml');
 			}
 		}
-		$this->feeds->feed[intval($feednum)]->lastup = $news[0]['pub'];
-		$this->feeds->asXML('feedlist.xml');
+		
 		//$news['channel'] = $this->feeds->feed[intval($feednum)]->name;
 		return $news;
 	}

@@ -6,7 +6,7 @@
 		<filter>&#x437;&#x430;&#x440;&#x43F;&#x43B;&#x430;&#x442;&#x430;</filter>
 		<view>1</view>
 		<refresh>60</refresh>
-		<lastup>1351499943</lastup>
+		<lastup>1351505478</lastup>
 	</feed>
 	<feed>
 		<name>Delfi</name>
@@ -14,7 +14,7 @@
 		<filter>&#x437;&#x430;&#x440;&#x43F;&#x43B;&#x430;&#x442;&#x430;</filter>
 		<view>1</view>
 		<refresh>65</refresh>
-		<lastup>1351499943</lastup>
+		<lastup>1351505478</lastup>
 	</feed>
 	<feed>
 		<name>HabraHabr</name>
@@ -22,7 +22,7 @@
 		<filter>&#x437;&#x430;&#x440;&#x43F;&#x43B;&#x430;&#x442;&#x430;</filter>
 		<view>1</view>
 		<refresh>300</refresh>
-		<lastup>1351499943</lastup>
+		<lastup>1351505478</lastup>
 	</feed>
 	
 </feeds>
